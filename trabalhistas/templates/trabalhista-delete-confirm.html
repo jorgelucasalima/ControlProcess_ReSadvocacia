@@ -1,0 +1,24 @@
+{% extends 'Base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %} Excluir Trabalhista {% endblock title %}
+
+{% block content %}
+
+<div class="container">
+    <p></p>
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item active">Excluir Trabalhista</li>
+    </ol>
+
+    <form method="POST">
+        {% csrf_token %}
+            <div class="alert alert-dismissible alert-warning">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <h4 class="alert-heading">Atenção!</h4>
+                    <p class="mb-0"><h1>Você tem certeza que quer excluir esse registro Trabalhista de {{ trabalhista.nomeTrab }} , Protocolo: {{ trabalhista.protocoloTrab }} ?</h1></p>
+            </div>
+        <button type="submit" class="btn btn-danger"> Confirmar a exclusão </button>
+    </form>
+  
+{% endblock content %}

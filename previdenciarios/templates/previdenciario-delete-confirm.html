@@ -1,0 +1,21 @@
+{% extends 'Base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %} Excluir Previdenciario {% endblock title %}
+
+{% block content %}
+
+<div class="container">
+    <p></p>
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item active">Excluir Previdenciario</li>
+    </ol>
+
+    <form method="POST">
+        {% csrf_token %}
+        <h1>Você tem certeza que quer excluir essa Previdência de {{ previdenciario.nomePrev }} , Protocolo: {{ previdenciario.protocoloPrev }} ?</h1>
+        <button type="submit" class="btn btn-danger"> Confirmar a exclusão </button>
+    </form>
+  
+
+{% endblock content %}

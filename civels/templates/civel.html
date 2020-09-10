@@ -1,0 +1,82 @@
+{% extends 'Base.html' %}
+
+{% block title %} Civel {% endblock title %}
+
+{% block content %}
+
+<div class="container-fluid">
+    <p></p>
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item active">Lista dos Civel</li>
+    </ol>
+    
+    <form method="GET" class="form-inline">
+        <div class="input-group-prepend">
+            <button class="btn btn-info" type="submit" id="button-addon1">Buscar por CPF</button>
+        </div>
+            <input type="text" class="form-control" placeholder="Apenas os números." name="search" id="search">
+    </form>
+    <p></p>
+    <a href="{% url 'create_civel' %}"><button type="button" class="btn btn-primary btn-sm" id="buttonAddRev" >Adicionar</button></a>
+    <p></p>
+
+        <ul>                    
+                <table class="table table-sm">
+                <thead>
+                    <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">CPF</th>
+                    <th scope="col">Whats/Contato</th>
+                    <th scope="col">Beneficio</th>
+                    <th scope="col">Tipo Beneficio</th>
+                    <th scope="col">Advogado(a)</th>
+                    <th scope="col">Protocolo</th>
+                    <th scope="col">Status Doc</th>
+                    <th scope="col">Doc</th>
+                    <th scope="col">Editar</th>
+                    <th scope="col">Excluir</th>
+                    </tr>
+                </thead>
+
+            {% for civel in civels %}
+                <tbody>
+                    <tr>
+                    <th scope="row">{{ civel.id }}</th>
+                    <td>{{ civel.nomeCivel }}</td>
+                    <td>{{ civel.cpfCivel }}</td>
+                    <td>{{ civel.whatsAppCivel }}</td>
+                    <td>{{ civel.beneficiosCivel }}</td>
+                    <td>{{ civel.tiposBeneficiosCivel }}</td>
+                    <td>{{ civel.advogadoCivel }}</td>
+                    <td>{{ civel.protocoloCivel }}</td>
+                    <td>{{ civel.statusDocCivel }}</td>
+                    <td><a href="{{ civel.docCivel.url }}"><span class="material-icons">get_app</span></a></td>
+                    <td><a href="{% url 'update_civel' civel.id %}"><span class="material-icons">edit</span></a></td>
+                    <td><a href="{% url 'delete_civel' civel.id %}"><span class="material-icons">restore_from_trash</span></a></td>
+                    </tr>
+                </tbody>
+            {% endfor %}
+                </table>          
+       </ul> 
+
+    
+    <div class="pagination">
+        <span class="step-links">
+            {% if civels.has_previous %}
+                <a href="?page={{ civels.previous_page_number }}"><span class="material-icons">navigate_before</span></a>
+            {% endif %}
+
+            <span class="current">
+                {{ civels.number }} de {{ civels.paginator.num_pages }}
+            </span>
+
+            {% if civels.has_next %}
+                <a href="?page={{ civels.next_page_number }}"><span class="material-icons">navigate_next</span></a>
+            {% endif %}
+
+        </span>
+    </div>
+</div>
+
+{% endblock content %}

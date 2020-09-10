@@ -1,0 +1,19 @@
+  
+-----------------------------------------------------------------------------
+ Olá, esse é o sistema ControlProcess para controle dos processos juridicos.
+-----------------------------------------------------------------------------
+
+ Este software foi desenvolvido por Jorge Lucas Alves De Lima, do e-mail:
+ jorgelucasalima@gmail.com, de Recife-PE, Brasil.
+
+Tecnologias:
+ 1. Python 3.7
+ 2. Django 3.0.4
+ 3. HTML5
+ 4. Bootstrap4
+
+
+-----------------------------------------------------------------------------
+
+Caso queira utilizar ou contribuir para melhoria e implementação da solução,
+favor, entrar em contato via e-mail.

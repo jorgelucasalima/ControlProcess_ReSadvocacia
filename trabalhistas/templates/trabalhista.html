@@ -1,0 +1,81 @@
+{% extends 'Base.html' %}
+
+{% block title %} Trabalhista {% endblock title %}
+
+{% block content %}
+
+<div class="container-fluid">
+    <p></p>
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item active">Lista dos Trabalhistas</li>
+    </ol>
+    
+    <form method="GET" class="form-inline">
+        <div class="input-group-prepend">
+            <button class="btn btn-info" type="submit" id="button-addon1">Buscar por CPF</button>
+        </div>
+            <input type="text" class="form-control" placeholder="Apenas os números." name="search" id="search">
+    </form>
+    <p></p>
+    <a href="{% url 'create_trabalhista' %}"><button type="button" class="btn btn-primary btn-sm" id="buttonAddRev" >Adicionar</button></a>
+    <p></p>
+
+        <ul>                    
+                <table class="table table-sm">
+                <thead>
+                    <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">CPF</th>
+                    <th scope="col">Whats/Contato</th>
+                    <th scope="col">Beneficio</th>
+                    <th scope="col">Advogado(a)</th>
+                    <th scope="col">Protocolo</th>
+                    <th scope="col">Status Doc</th>
+                    <th scope="col">Doc</th>
+                    <th scope="col">Editar</th>
+                    <th scope="col">Excluir</th>
+                    </tr>
+                </thead>
+
+            {% for trabalhista in trabalhistas %}
+                <tbody>
+                    <tr>
+                    <th scope="row">{{ trabalhista.id }}</th>
+                    <td>{{ trabalhista.nomeTrab }}</td>
+                    <td>{{ trabalhista.cpfTrab }}</td>
+                    <td>{{ trabalhista.whatsAppTrab }}</td>
+                    <td>{{ trabalhista.beneficiosTrab }}</td>
+                    <td>{{ trabalhista.advogadoTrab }}</td>
+                    <td>{{ trabalhista.protocoloTrab }}</td>
+                    <td>{{ trabalhista.statusDocTrab }}</td>
+                    <td><a href="{{ trabalhista.docTrab.url }}"><span class="material-icons">get_app</span></a></td>
+                    <td><a href="{% url 'update_trabalhista' trabalhista.id %}"><span class="material-icons">edit</span></a></td>
+                    <td><a href="{% url 'delete_trabalhista' trabalhista.id %}"><span class="material-icons">restore_from_trash</span></a></td>
+                    </tr>
+                </tbody>
+            {% endfor %}
+                </table>          
+       </ul> 
+
+    
+    <div class="pagination">
+        <span class="step-links">
+            {% if trabalhistas.has_previous %}
+                <a href="?page={{ trabalhistas.previous_page_number }}"><span class="material-icons">navigate_before</span></a>
+            {% endif %}
+
+            <span class="current">
+                {{ trabalhistas.number }} de {{ trabalhistas.paginator.num_pages }}
+            </span>
+
+            {% if trabalhistas.has_next %}
+                <a href="?page={{ trabalhistas.next_page_number }}"><span class="material-icons">navigate_next</span></a>
+            {% endif %}
+
+        </span>
+    </div>
+</div>
+
+
+{% endblock content %}

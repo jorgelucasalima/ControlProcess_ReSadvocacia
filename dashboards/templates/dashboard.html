@@ -1,0 +1,52 @@
+{% extends 'Base.html' %}
+
+{% block title %} Dashboard {% endblock title %}
+
+{% block content %}
+
+<div class="container">
+    <p></p>
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item active">Dashboard</li>
+    </ol>
+    <p></p>
+    
+    <div class="card text-center">
+        <div class="card text-white bg-danger">
+            <div class="card-body">
+                <h5 class="card-title">Quantidade Total de Causas</h5>
+                <h1 class="card-title">{{ dashTotal }}</h1> 
+            </div>
+    </div>
+    
+<p></p>
+        <div class="row">
+        <div class="col-sm-3">
+                <div class="card text-white bg-info">
+                    <div class="card-body">
+                        <h5 class="card-title">Total Previdênciarios</h5>
+                        <h1 class="card-title">{{ dashPrev }}</h1>                      
+                    </div>
+                </div>
+        </div>  
+        <div class="col-sm-6">
+                <div class="card text-white bg-info">
+                    <div class="card-body">
+                        <h5 class="card-title">Total Trabalhista</h5>
+                        <h1 class="card-title">{{ dashTrab }}</h1>                        
+                    </div>
+                </div>
+        </div> 
+        <div class="col-sm-3">
+                <div class="card text-white bg-info">
+                    <div class="card-body">
+                        <h5 class="card-title">Total Civel</h5>
+                        <h1 class="card-title">{{ dashCivel }}</h1>                        
+                    </div>
+                </div>
+        </div> 
+    </div>
+</div>
+
+
+{% endblock content %}

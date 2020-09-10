@@ -1,0 +1,81 @@
+{% extends 'Base.html' %}
+
+{% block title %} Previdenciarios {% endblock title %}
+
+{% block content %}
+
+<div class="container-fluid">
+    <p></p>
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item active">Lista dos Previdenciarios</li>
+    </ol>
+    
+    <form method="GET" class="form-inline">
+        <div class="input-group-prepend">
+            <button class="btn btn-info" type="submit" id="button-addon1">Buscar por CPF</button>
+        </div>
+            <input type="text" class="form-control" placeholder="Apenas os números." name="search" id="search">
+    </form>
+    <p></p>
+    <a href="{% url 'create_previdenciario' %}"><button type="button" class="btn btn-primary btn-sm" id="buttonAddRev" >Adicionar</button></a>
+    <p></p>
+
+        <ul>                    
+                <table class="table table-sm">
+                <thead>
+                    <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">CPF</th>
+                    <th scope="col">Whats/Contato</th>
+                    <th scope="col">Beneficio</th>
+                    <th scope="col">Advogado(a)</th>
+                    <th scope="col">Protocolo</th>
+                    <th scope="col">Status Doc</th>
+                    <th scope="col">Doc</th>
+                    <th scope="col">Editar</th>
+                    <th scope="col">Excluir</th>
+                    </tr>
+                </thead>
+
+            {% for previdenciario in previdenciarios %}
+                <tbody>
+                    <tr>
+                    <th scope="row">{{ previdenciario.id }}</th>
+                    <td>{{ previdenciario.nomePrev }}</td>
+                    <td>{{ previdenciario.cpfPrev }}</td>
+                    <td>{{ previdenciario.whatsAppPrev }}</td>
+                    <td>{{ previdenciario.beneficiosPrev }}</td>
+                    <td>{{ previdenciario.advogadoPrev}}</td>
+                    <td>{{ previdenciario.protocoloPrev }}</td>
+                    <td>{{ previdenciario.statusDocPrev }}</td>
+                    <td><a href="{{ previdenciario.docPrev.url }}"><span class="material-icons">get_app</span></a></td>
+                    <td><a href="{% url 'update_previdenciario' previdenciario.id %}"><span class="material-icons">edit</span></a></td>
+                    <td><a href="{% url 'delete_previdenciario' previdenciario.id %}"><span class="material-icons">restore_from_trash</span></a></td>
+                    </tr>
+                </tbody>
+            {% endfor %}
+                </table>          
+       </ul> 
+
+    
+    <div class="pagination">
+        <span class="step-links">
+            {% if previdenciarios.has_previous %}
+                <a href="?page={{ previdenciarios.previous_page_number }}"><span class="material-icons">navigate_before</span></a>
+            {% endif %}
+
+            <span class="current">
+                {{ previdenciarios.number }} de {{ previdenciarios.paginator.num_pages }}
+            </span>
+
+            {% if previdenciarios.has_next %}
+                <a href="?page={{ previdenciarios.next_page_number }}"><span class="material-icons">navigate_next</span></a>
+            {% endif %}
+
+        </span>
+    </div>
+</div>
+
+
+{% endblock content %}
